@@ -2,7 +2,10 @@
 
 export(df.sub)
 export(flip_strand)
+<<<<<<< HEAD
 export(getout_name)
+=======
+>>>>>>> 1bfc70293ec4e825fc5e78c2e5f03d8f7e9741ea
 export(getout_path)
 export(pkg.lib)
 export(read.bim)
