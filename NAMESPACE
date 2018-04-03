@@ -2,10 +2,12 @@
 
 export(df.sub)
 export(flip_strand)
-export(get_path)
+export(getout_name)
+export(getout_path)
 export(pkg.lib)
 export(read.bim)
 export(read.vcf)
 export(rm.all)
 export(see)
 export(write.bim)
+export(write.vcf)
