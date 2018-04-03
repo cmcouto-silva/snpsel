@@ -50,3 +50,5 @@ Alias/shorcut for "rm(list = ls())" and "gc(reset = TRUE)".
 ```r
 rm.all()
 ```
+
+###### Obs: Not up to date*
