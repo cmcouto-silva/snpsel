@@ -5,10 +5,6 @@
 #' @return Written file
 #' @export
 
-<<<<<<< HEAD
 write.bim <- function(bim, output, append = F, quote = F, sep = "\t", row.names = F, col.names = F, ...) {
-=======
-write.bim <- function(bim, output, ...) {
->>>>>>> c68d7f73fabbc1e09b3c5ad015c75e69132ce81c
   data.table::fwrite(x = bim, file = output, append = F, quote = F, sep = "\t", row.names = F, col.names = F, ...)
 }
