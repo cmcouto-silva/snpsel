@@ -4,7 +4,7 @@
 \alias{read.vcf}
 \title{Read vcf file}
 \usage{
-read.vcf(vcf_file, ...)
+read.vcf(vcf_file, colClasses = "character", header = T, ...)
 }
 \arguments{
 \item{bim_file}{<path_to_vcf_file>}

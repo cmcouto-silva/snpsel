@@ -4,7 +4,8 @@
 \alias{write.vcf}
 \title{Write .vcf}
 \usage{
-write.vcf(vcf, output, ...)
+write.vcf(vcf, output, append = F, quote = F, sep = "\\t",
+  row.names = F, col.names = T, ...)
 }
 \arguments{
 \item{vcf}{Dataframe. A data.table, data.frame or matrix object to be saved as vcf file.}

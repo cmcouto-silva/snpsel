@@ -9,7 +9,7 @@
 #' @export
 #'
 
-read.bim <- function(bim_file, ...){
+read.bim <- function(bim_file, header = F, col.names = c("CHR","SNP","GD","POS","A1", "A2"), colClasses = c("integer", "character", rep("integer", 2), rep("character", 2)), ...) {
   data.table::fread(bim_file, header = F,
         col.names = c("CHR","SNP","GD","POS","A1", "A2"),
         colClasses = c("integer", "character", rep("integer", 2), rep("character", 2)), ...)
