@@ -4,7 +4,7 @@
 \alias{read.bim}
 \title{Read bim file}
 \usage{
-read.bim(bim_file)
+read.bim(bim_file, ...)
 }
 \arguments{
 \item{bim_file}{<path_to_bim_file>}

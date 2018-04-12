@@ -4,7 +4,7 @@
 \alias{write.bim}
 \title{Write .bim}
 \usage{
-write.bim(bim, output)
+write.bim(bim, output, ...)
 }
 \arguments{
 \item{bim}{Dataframe. A data.table, data.frame or matrix object to be saved as bim file.}
