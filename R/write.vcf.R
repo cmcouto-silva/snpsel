@@ -5,6 +5,6 @@
 #' @return Written file
 #' @export
 
-write.vcf <- function(vcf, output) {
-  data.table::fwrite(x = vcf, file = output, append = F, quote = F, sep = "\t", row.names = F, col.names = T)
+write.vcf <- function(vcf, output, ...) {
+  data.table::fwrite(x = vcf, file = output, append = F, quote = F, sep = "\t", row.names = F, col.names = T, ...)
 }

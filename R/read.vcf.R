@@ -9,6 +9,6 @@
 #' @export
 #'
 
-read.vcf <- function(vcf_file){
-    data.table::fread(input = vcf_file, colClasses = "character", header = T)
+read.vcf <- function(vcf_file, ...){
+    data.table::fread(input = vcf_file, colClasses = "character", header = T, ...)
 }
