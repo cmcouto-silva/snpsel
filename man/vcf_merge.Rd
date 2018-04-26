@@ -16,7 +16,7 @@ Data.table/data.frame object with merged vcf files.
 Merge multiple vcf files in a single one
 }
 \examples{
-\dontrun {
+\dontrun{
 vcf_files <- gtools::mixedsort(list.files(path = ".", pattern = "\\\\.vcf$"))
 vcf_merged <- vcf_merge(vcf_files)
 }
