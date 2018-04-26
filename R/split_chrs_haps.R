@@ -2,8 +2,8 @@
 
 split_chrs_haps <- function(haps, output, prefx = T) {
 
-  sample <- fread(paste0(haps, ".sample"), header = F)
-  haps <- fread(paste0(haps, ".haps"))
+  sample <- data.table::fread(paste0(haps, ".sample"), header = F)
+  haps <- data.table::fread(paste0(haps, ".haps"))
   log <- missing(output)
 
   file_name <- parse(text = 'ifelse(test = { prefx == T },
