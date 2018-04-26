@@ -1,3 +1,4 @@
+#' @import data.table
 #' @export
 
 split_chrs_haps <- function(haps, output, prefx = T) {
