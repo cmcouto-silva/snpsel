@@ -10,8 +10,7 @@
 #' @export
 
 pkg.lib <- function(...) {
-  pkgs <- strings <-  sys.call(0)
-  pkgs <- as.character(pkgs)[-1]
+  pkgs <- as.character(sys.call(0))[-1]
   sapply(pkgs, function(pkg){
     if(!requireNamespace(pkg)) install.packages(pkg, dependencies = TRUE)
     library(pkg, character.only = TRUE)
