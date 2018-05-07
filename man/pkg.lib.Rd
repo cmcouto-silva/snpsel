@@ -7,17 +7,20 @@
 pkg.lib(...)
 }
 \arguments{
-\item{packages}{A vector with package names.}
+\item{...}{Package names (with or without double quotes)}
 }
 \value{
 Packages attached into namespace.
 }
 \description{
-This function loads multiple packages according to a vector of names, and install them if they're not already installed. Only packages avaialable on CRAN will be installed.
+This function loads multiple packages according to their names, and install them if they're not already installed.
+}
+\details{
+Only packages available on CRAN's repository will be automatically installed using this functions.
+For packages stored in another repository, please install them separately according to proper instructions.
 }
 \examples{
 \dontrun{
-required_packages <- c("tidyverse", "dplyr", "lubridate")
-pkg.lib(packages = required_packages)
+pkg.lib(data.table, dplyr, knitr)
 }
 }
