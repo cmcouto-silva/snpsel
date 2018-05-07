@@ -9,11 +9,12 @@
 #' }
 #' @export
 
-pkg.lib <- function(packages) {
-  sapply(packages, function(pkg){
+pkg.lib <- function(...) {
+  pkgs <- as.strings(...)
+  sapply(pkgs, function(pkg){
     if(!requireNamespace(pkg)) install.packages(pkg, dependencies = TRUE)
     library(pkg, character.only = TRUE)
-    cat(paste0('  Package "',pkg, '" successfully loaded!\n'))
+    cat(paste0('  Package "', pkg, '" successfully loaded!\n'))
   })
   return(invisible())
 }

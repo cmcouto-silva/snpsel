@@ -4,7 +4,7 @@
 \alias{pkg.lib}
 \title{Load multiple packages in R}
 \usage{
-pkg.lib(packages)
+pkg.lib(...)
 }
 \arguments{
 \item{packages}{A vector with package names.}
