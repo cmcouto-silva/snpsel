@@ -3,7 +3,7 @@ Title: Facilities for essential tasks in R
 Version: 0.0.0.9001
 Authors@R: person("Cainã Max", "Couto-Silva", email = "cmcouto.silva@gmail.com", role = c("aut", "cre"))
 Description: Simple compilation of functions aiming to make life easier.
-Depends: R (>= 3.4.3)
+Depends: R (>= 3.4)
 Imports: 
 	data.table
 License: GPL-2
