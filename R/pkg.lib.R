@@ -8,7 +8,9 @@
 #' \dontrun{
 #' pkg.lib(data.table, dplyr, knitr)
 #' }
+#' @importFrom utils install.packages
 #' @export
+#' @author Cainã Max Couto-Silva
 
 pkg.lib <- function(...) {
   pkgs <- as.character(sys.call(0))[-1]

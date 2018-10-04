@@ -24,3 +24,6 @@ For packages stored in another repository, please install them separately accord
 pkg.lib(data.table, dplyr, knitr)
 }
 }
+\author{
+Cainã Max Couto-Silva
+}

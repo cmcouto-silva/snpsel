@@ -5,7 +5,8 @@ Authors@R: person("Cainã Max", "Couto-Silva", email = "cmcouto.silva@gmail.com"
 Description: Simple compilation of functions aiming to make life easier.
 Depends: R (>= 3.4)
 Imports: 
-	data.table
+	data.table,
+	magrittr
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
