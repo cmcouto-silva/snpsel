@@ -49,6 +49,12 @@
 
     paste(plink, "--bfile", plink_file, "--exclude", rm_snps, "--make-bed --out", output) %>%
       system()
+    
+    # Removing temporary files
+    unlink(c(
+      paste0(plink_file, "_rm_snps.txt"), 
+      paste0(plink_file, c(".bed~",".bim~",".fam~"))
+    ))
   }
 
   # For Shapeit files (.haps)
