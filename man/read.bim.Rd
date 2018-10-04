@@ -21,4 +21,8 @@ Read plink bim file
 \dontrun{
 DT <- read.bim("./plink.bim")
 }
+
+}
+\author{
+Cainã Max Couto da Silva
 }
