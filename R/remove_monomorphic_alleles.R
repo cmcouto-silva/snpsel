@@ -12,14 +12,14 @@
 #' remove_monomorphic_alleles(file = bim_file)
 #' }
 #'
-#' @importFrom magrittr set_names
+#' @importFrom magrittr set_names %>%
 # @importFrom magrittr`%>%` `%<>%`
 #' @export
 #' @author Cainã Max Couto da Silva
 
  remove_monomorphic_alleles <- function(file, output) {
-  x <- c(5,5)
-  x <- set_names(x, c('x1','x2'))
+  x <- c(5,5) %>%
+    set_names(x, c('x1','x2'))
 #
 #   # Checking file extension
 #   if(!grepl("\\.bim$|\\.haps$", file)) {
