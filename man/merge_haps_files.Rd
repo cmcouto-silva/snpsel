@@ -4,10 +4,10 @@
 \alias{merge_haps_files}
 \title{Merge Shapeit files (.haps/.sample)}
 \usage{
-merge_haps_files(haps_files, output)
+merge_haps_files(haps_path, output)
 }
 \arguments{
-\item{haps_files}{Character. Path to the folder where files are alocated (.haps and correspondent .sample files)}
+\item{haps_path}{Character. Path to the folder where files are alocated (.haps and correspondent .sample files)}
 
 \item{output}{Character. Desired name for output WITHOUT extension. Default set to "merged".}
 }
