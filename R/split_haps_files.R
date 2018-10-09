@@ -35,8 +35,8 @@ split_haps_files <- function(haps_file, output_path, out) {
 
   # Writing files .haps/.sample
   for(chr in unique(haps_files[, V1])){
-    data.table::fwrite(haps_files[V1 == chr], paste0(output_path, "chr", chr, out, ".haps"))
-    data.table::fwrite(sample_files, paste0(output_path, "chr", chr, out, ".sample"))
+    data.table::fwrite(haps_files[V1 == chr], paste0(output_path, "chr", chr, out, ".haps"), sep = " ", col.names = F)
+    data.table::fwrite(sample_files, paste0(output_path, "chr", chr, out, ".sample"), sep = " ", col.names = F)
   }
 
 }
