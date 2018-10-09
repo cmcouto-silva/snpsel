@@ -8,7 +8,7 @@
 #'
 #' \dontrun{
 #' dataset <- "merged.haps" # or just "merged"
-#' split_haps_files(haps_file = dataset, "splitted_files/", out = "_phased")
+#' split_haps(haps_file = dataset, "splitted_files/", out = "_phased")
 #'
 #' # Then, multiple files splitted by chromosomes will be created at the folder "splitted_files",
 #' named "chrID_phased.EXT", where ID is the unique chromosome ID, and EXT is the correspoding extension (.haps/.sample)
@@ -18,7 +18,7 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-split_haps_files <- function(haps_file, output_path, out) {
+split_haps <- function(haps_file, output_path, out) {
 
   # Standard output
   if(missing(output_path)) output_path <- "."
@@ -35,8 +35,8 @@ split_haps_files <- function(haps_file, output_path, out) {
 
   # Writing files .haps/.sample
   for(chr in unique(haps_files[, V1])){
-    data.table::fwrite(haps_files[V1 == chr], paste0(output_path, "chr", chr, out, ".haps"))
-    data.table::fwrite(sample_files, paste0(output_path, "chr", chr, out, ".sample"))
+    data.table::fwrite(haps_files[V1 == chr], paste0(output_path, "chr", chr, out, ".haps"), sep = " ", col.names = F)
+    data.table::fwrite(sample_files, paste0(output_path, "chr", chr, out, ".sample"), sep = " ", col.names = F)
   }
 
 }
