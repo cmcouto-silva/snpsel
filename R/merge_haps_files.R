@@ -1,6 +1,6 @@
 #' @title Merge Shapeit files (.haps/.sample)
 #' @description Merge Shapeit files (.haps/.sample) to a single one. All files in the folder will be merged (if correspondents)!
-#' @param haps_files Character. Path to the folder where files are alocated (.haps and correspondent .sample files)
+#' @param haps_path Character. Path to the folder where files are alocated (.haps and correspondent .sample files)
 #' @param output Character. Desired name for output WITHOUT extension. Default set to "merged".
 #' @return Dataset without monomorphic alleles.
 #' @examples
@@ -14,7 +14,7 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-merge_haps_files <- function(haps_files, output) {
+merge_haps_files <- function(haps_path, output) {
 
   # List all haps files in the folder
   haps_files <- list.files(path = haps_path, pattern = "\\.haps$", full.names = T) %>%
