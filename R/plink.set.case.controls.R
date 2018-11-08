@@ -24,11 +24,11 @@ plink.set.case.controls <- function(fam, cases, controls, column = "id") {
   # cases <- readLines(cases)
   
   if(column == "id") {
-    fam_cc[V2 %in% cases, V6 := 1L]
-    fam_cc[V2 %in% controls, V6 := 2L]
+    fam_cc[V2 %in% cases, V6 := 2L]
+    fam_cc[V2 %in% controls, V6 := 1L]
   } else {
-    fam_cc[V1 %in% cases, V6 := 1L]
-    fam_cc[V1 %in% controls, V6 := 2L]
+    fam_cc[V1 %in% cases, V6 := 2L]
+    fam_cc[V1 %in% controls, V6 := 1L]
   }
     
   data.table::fwrite(x = fam_cc, file = fam, sep = " ", row.names = F, col.names = F)
