@@ -20,8 +20,8 @@ plink.set.case.controls <- function(fam, cases, controls, column = "id") {
   if(nrow(fam_cc[!V6 %in% c(0L,-9L)]) > 0L)
     stop("There are cases and/or controls in the fam file. Please reseat them first!")
   
-  controls <- readLines(controls)
-  cases <- readLines(cases)
+  # controls <- readLines(controls)
+  # cases <- readLines(cases)
   
   if(column == "id") {
     fam_cc[V2 %in% cases, V6 := 1L]
