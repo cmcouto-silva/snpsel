@@ -4,7 +4,7 @@
 #' @author Cainã Max Couto-Silva
 #' @export
 
-rm.all <- function() {
+clean <- function() {
   rm(list = ls(pos = 1), pos = 1)
   invisible(gc(reset = TRUE))
 }

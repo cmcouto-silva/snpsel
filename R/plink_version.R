@@ -1,6 +1,6 @@
 #' @export
 
-check_plink_version <- function(){
+plink_version <- function(){
 
   plink_v <- gsub(".*v(\\S..).*", "\\1", system('plink --version', T))
 
