@@ -1,6 +1,5 @@
 #' @export
-
-shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F) {
+shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F, ...) {
   
   # Checking if required programs are installed on system path
   program_on_path("shapeit")
@@ -10,16 +9,35 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F) {
   if(!mode %in% 1:2)
     stop("mode must be 1 (for binary files ─ .bed/.bim/.fam) or 2 (for human-readable files ─ .ped/.map).")
   
+  # Missing Args
+  if(missing(out)) out <- shapeit_files
+  
+  # Verify shapeit2vcf Aditional Arguments
+  args <- list(...)
+  
+  if (!all(names(args) %in% c("split", "keep.split"))) {
+    stop('Only "split" and "keep.split" are permitted as aditional arguments.')
+  }
+  
+  # Set shapeit2vcf aditional args
+  split <- ifelse(any(names(args) == "split"), args$split, F)
+  keep.split <- ifelse(any(names(args) == "keep.split"), args$keep.split, F)
+  
   # Line command according to Plink version
   plink <- plink_version()
   
-  if(missing(out)) out <- shapeit_files
-  
   # Conversion from Shapeit to VCF format
-  system( paste (
-    "shapeit -convert --input-haps ", shapeit_files, "--output-vcf ", paste0(out, '.vcf')
-  ))
+  if(split) {
+    shapeit2vcf(shapeit_files, out, split = split, keep.split = keep.split)
+  } else {
+    shapeit2vcf(shapeit_files, out)
+  }
   
+  if(!file.exists(paste0(out, '.vcf')))
+    stop("VCF file was not created. This is possible to multiple chromosomes in the dataset (Shapeit is not suited to deal with them).
+  Please try running this function again with parameter split = TRUE.")
+  
+  ## Conversion from VCF to Plink
   if(mode == 1L) {
     
     # Conversion from VCF to Plink binary format
@@ -46,4 +64,5 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F) {
   ))
   
 }
+
 
