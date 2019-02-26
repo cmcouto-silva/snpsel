@@ -1,0 +1,63 @@
+setwd("/home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/rehh_current/dataset")
+shapeit_files <- "allchrs_adj_grch37"
+
+# Checking chromosomes on dataset
+chrs_len <- system(paste(
+    "cut -d' ' -f1", paste0(shapeit_files, ".haps"), "| uniq -c"
+), intern = T)
+
+# Spamning warning if there is multiple chromosomes
+if(length(chrs_len) > 1L) {
+  warning("There are more than one chromosome in this data. The conversion to vcf may fail.\nPlease consider to run with parameter split = TRUE.")
+}
+
+# if split = TRUE
+
+chrs_len <- strsplit(chrs_len, " ")
+chrs_len <- lapply(chrs_len, function(.) rev(.[. != ""]))
+chrs_len <- data.table::as.data.table(chrs_len)
+chrs_len <- data.table::transpose(chrs_len)
+data.table::setnames(chrs_len, colnames(chrs_len), c("CHR", "FREQ"))[, CUMSUM := cumsum(FREQ)]
+
+dir_split <- paste0(shapeit_files, "_split_files")
+if(dir.exists(dir_split))
+  stop(dir_split, ' already exists. Please consider to rename/remove this directory.')
+
+dir.create(dir_split)
+cs <- c(0L, chrs_len[, CUMSUM])
+
+# Split Shapeit files by chromosome
+for (i in 1:nrow(chrs_len)) {
+  start <- cs[i]+1L
+  stop <- cs[i+1L]
+  out <- paste0(dir_split, "/chr",i)
+  
+  # Split .haps files
+  system(paste(
+    "sed -n", paste0("'",start,",",stop,"p;",stop+1,"q'"), paste0(shapeit_files, ".haps"), ">", paste0(out,".haps") 
+  ))
+  
+  # Split .sample files
+  system(paste(
+    "cp", paste0(shapeit_files, ".sample"), paste0(out,".sample")
+  ))
+  
+}
+
+# Conversion from Shapeit to VCF per chromosome
+for(chr in chrs_len[, CHR]) {
+  sfile <- paste0(dir_split, "/chr", chr)
+  system( paste (
+    "shapeit -convert --input-haps", sfile, "--output-vcf ", gt::add.extension(sfile, '.vcf')
+  ))
+}
+
+# Conversion from VCF to Plink per chromosome
+for(chr in chrs_len[, CHR]) {
+  vcf <- paste0(dir_split, "/chr", chr, ".vcf")
+  out <- gt::rm.extension(vcf)
+  system( paste (
+    "plink --vcf", vcf, "--make-bed --out", out
+  ))
+}
+

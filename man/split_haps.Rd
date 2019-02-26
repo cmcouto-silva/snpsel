@@ -4,12 +4,12 @@
 \alias{split_haps}
 \title{Split Shapeit files (.haps/.sample)}
 \usage{
-split_haps(haps_file, output_path, out)
+split_haps(haps_file, output_dir, output_prefix)
 }
 \arguments{
 \item{haps_file}{Character. File name (with or without .haps extension).}
 
-\item{output_path}{Character. Desired folder to outputs. Default set to current folder.}
+\item{output_dir}{Character. Desired folder to outputs. Default set to current folder.}
 
 \item{out}{Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.}
 }

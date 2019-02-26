@@ -1,7 +1,7 @@
 #' @title Split Shapeit files (.haps/.sample)
 #' @description Split a single dataset (.haps/.sample) by chromossome into multiple files.
 #' @param haps_file Character. File name (with or without .haps extension).
-#' @param output_path Character. Desired folder to outputs. Default set to current folder.
+#' @param output_dir Character. Desired folder to outputs. Default set to current folder.
 #' @param out Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.
 #' @return Multiple files from dataset splitted by chromosome unique IDs.
 #' @examples
@@ -18,13 +18,13 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-split_haps <- function(haps_file, output_path, out) {
+split_haps <- function(haps_file, output_dir, output_prefix) {
 
   # Standard output
-  if(missing(output_path)) output_path <- "."
-  if(missing(out)) out <- ""
+  if(missing(output_dir)) output_dir <- "."
+  if(missing(output_prefix)) output_prefix <- ""
 
-  output_path <- add_last_bar(output_path)
+  output_dir <- add_last_bar(output_dir)
 
   # Removing possible extension
   if(grepl("\\.haps$", haps_file)) haps_file <- unlist(strsplit(haps_file, "\\.haps$"))
@@ -35,8 +35,8 @@ split_haps <- function(haps_file, output_path, out) {
 
   # Writing files .haps/.sample
   for(chr in unique(haps_files[, V1])){
-    data.table::fwrite(haps_files[V1 == chr], paste0(output_path, "chr", chr, out, ".haps"), sep = " ", col.names = F)
-    data.table::fwrite(sample_files, paste0(output_path, "chr", chr, out, ".sample"), sep = " ", col.names = F)
+    data.table::fwrite(haps_files[V1 == chr], paste0(output_dir, "chr", chr, output_prefix, ".haps"), sep = " ", col.names = F)
+    data.table::fwrite(sample_files, paste0(output_dir, "chr", chr, output_prefix, ".sample"), sep = " ", col.names = F)
   }
 
 }

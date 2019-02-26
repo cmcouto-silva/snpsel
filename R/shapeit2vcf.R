@@ -11,7 +11,7 @@ shapeit2vcf <- function(shapeit_files, out) {
     "shapeit -convert --input-haps ", shapeit_files, "--output-vcf ", add.extension(out, '.vcf')
   ))
   
-  # Removaing temporary files
+  # Removing temporary files
   shapeit_date <- paste(unlist(strsplit(as.character(Sys.Date()), "-"))[3:1], collapse = "")
   unlink(paste0(
     "shapeit_", shapeit_date, "_*.log"
