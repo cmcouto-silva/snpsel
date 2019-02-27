@@ -1,5 +1,5 @@
 #' @export
-shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F, ...) {
+shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.family.names = T, keep.vcf = F, ...) {
   
   # Checking if required programs are installed on system path
   program_on_path("shapeit")
@@ -23,9 +23,6 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F, ...) {
   split <- ifelse(any(names(args) == "split"), args$split, F)
   keep.split <- ifelse(any(names(args) == "keep.split"), args$keep.split, F)
   
-  # Line command according to Plink version
-  plink <- plink_version()
-  
   # Conversion from Shapeit to VCF format
   if(split) {
     shapeit2vcf(shapeit_files, out, split = split, keep.split = keep.split)
@@ -38,31 +35,40 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.vcf = F, ...) {
   Please try running this function again with parameter split = TRUE.")
   
   ## Conversion from VCF to Plink
-  if(mode == 1L) {
-    
+  
+  if(mode == 1L | (mode == 2L & keep.family.names)) {
     # Conversion from VCF to Plink binary format
-    system( paste (
-      plink, "--vcf", paste0(out, '.vcf'), "--make-bed", "--out", out
-    ))
-  } else {
-    
-    # Conversion from VCF to Plink human-readable format
-    system( paste (
-      plink, "--vcf", paste0(out, '.vcf'), "--recode", "--out", out
-    ))
+    plink(`--vcf` = paste0(out, '.vcf'), "--double-id", "--make-bed", `--out` = out)
   }
   
-  # Conditionally remove VCF file
+  if(mode == 2L & isFALSE(keep.family.names)) {
+    # Conversion from VCF to Plink human-readable format
+    plink(`--vcf` = paste0(out, '.vcf'), "--double-id", "--recode", `--out` = out)
+  }
+    
+  # Updating Family IDs
+  if(keep.family.names) {
+    sample <- data.table::fread(paste0(shapeit_files, '.sample'), header = F, select = 1:2, skip = 2L)
+    fam <- data.table::fread(paste0(out, '.fam'), select = 1:2)
+    out_recode <- paste0(out, "_recodeIDs.txt")
+    if(file.exists(out_recode)) stop('"',out_recode,'"', ' file exists. Please remove/rename this file in order to run again this function.')
+    
+    colnames(sample) <- c("V3","V4")
+    recode_ids <- cbind(fam, sample)
+    data.table::fwrite(recode_ids, out_recode, sep = " ", col.names = F)
+    
+    if(mode == 1L) {
+      plink(`--bfile` = out, `--update-ids` = out_recode, '--make-bed', `--out` = out)
+      unlink(c(paste0(out,"*~"), out_recode))
+    } else {
+      plink(`--bfile` = out, `--update-ids` = out_recode, '--recode', `--out` = out)
+      unlink(c(paste0(out, c('.bed','.bim','.fam','.log')), paste0(out,"*~"), out_recode))
+    }
+  }
+  
+  # Conditionally removing VCF file
   if(isFALSE(keep.vcf)) {
     unlink(paste0(out, '.vcf'))
   }
   
-  # Removing temporary files
-  shapeit_date <- paste(unlist(strsplit(as.character(Sys.Date()), "-"))[3:1], collapse = "")
-  unlink(paste0(
-    "shapeit_", shapeit_date, "_*.log"
-  ))
-  
 }
-
-
