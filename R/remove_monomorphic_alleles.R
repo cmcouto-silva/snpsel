@@ -40,7 +40,7 @@
       stop(" There are no zeros in alleles")
     }
 
-    plink <- gt::check_plink_version()
+    plink <- plink_version()
     plink_file <- strsplit(bim_file, "\\.bim$") %>% unlist
 
     if(missing(output)) output <- plink_file
