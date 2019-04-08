@@ -36,7 +36,7 @@ snpdata_mgmt <- function(bim_file,
   ####################################################################################################!
   
   # Read data
-  bim <- gt::read.bim(bim_file)
+  bim <- read.bim(bim_file)
   
   # Remove duplicated chromosome/positions in dataset
   dup_pos <- bim[, duplicated(POS), by = CHR][, V1]
@@ -48,17 +48,14 @@ snpdata_mgmt <- function(bim_file,
       dup_pos <- bim[dup_pos, POS]
       snps <- bim[POS %in% dup_pos, SNP]
       
-      plink <- gt::check_plink_version()
-      plink_file <- gt::rm.extension(bim_file)
+      plink_file <- rm.extension(bim_file)
       rm.snps <- paste0(plink_file, ".Remove.txt")
       writeLines(snps, rm.snps)
       
       # Running plink
-      system(paste(
-        plink, "--bfile", plink_file, "--exclude", rm.snps, "--make-bed", "--out", plink_file
-      )); unlink(c(rm.snps, "*~"))
       
-      bim <- gt::read.bim(bim_file)
+      plink(`--bfile` = plink_file, `--exclude` = rm.snps, "--make-bed", `out` = plink_file)
+      bim <- read.bim(bim_file)
       
     } else {
       stop (paste0("You should not have duplicate positions in your data.\n",
@@ -102,7 +99,7 @@ snpdata_mgmt <- function(bim_file,
   
   # Flip strands (if necessary)
   bim.merge[A1 != 0L & A1 != `Ref Allele` & A1 != `Alt Allele` & A2 != `Ref Allele` & A2 != `Alt Allele`, 
-            c('A1', 'A2') := .(gt::flip_strand(A1), gt::flip_strand(A2))]
+            c('A1', 'A2') := .(flip_strand(A1), flip_strand(A2))]
   
   mismatch_alleles <- bim.merge[A1 != 0L & A1 != `Ref Allele` & A1 != `Alt Allele` & A2 != `Ref Allele` & A2 != `Alt Allele`, .N]
   if(mismatch_alleles > 0L) stop("Alleles from dataset do not correspond to alleles from reference, even after flipping strands!")
@@ -132,10 +129,11 @@ snpdata_mgmt <- function(bim_file,
   
   # Saving file
   if (!identical(bim, bim.merge[, .(CHR, SNP, GD, POS, A1, A2)]) | (any(dup_pos) & remove_dup_pos)) {
-    gt::write.bim(bim = bim.merge[, .(CHR, SNP, GD, POS, A1, A2)], output = bim_file)
+    write.bim(bim = bim.merge[, .(CHR, SNP, GD, POS, A1, A2)], output = bim_file)
     cat(paste0(nbar, "File '", bim_file, "'", " has been overwritten.\n"))
   } else {
     cat(nbar, "No changes on dataset has been done!\n")
   }
   
 }
+
