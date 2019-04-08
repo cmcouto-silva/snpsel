@@ -48,13 +48,13 @@ snpdata_mgmt <- function(bim_file,
       dup_pos <- bim[dup_pos, POS]
       snps <- bim[POS %in% dup_pos, SNP]
       
-      plink_file <- rm.extension(bim_file)
+      plink_file <- unname(rm.extension(bim_file))
       rm.snps <- paste0(plink_file, ".Remove.txt")
       writeLines(snps, rm.snps)
       
       # Running plink
       
-      plink(`--bfile` = plink_file, `--exclude` = rm.snps, "--make-bed", `out` = plink_file)
+      plink(`--bfile` = plink_file, `--exclude` = rm.snps, '--make-bed', `--out` = plink_file)
       bim <- read.bim(bim_file)
       
     } else {
