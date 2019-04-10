@@ -14,7 +14,7 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-merge_haps_files <- function(haps_path, output) {
+shapeit_merge <- function(haps_path, output) {
 
   # List all haps files in the folder
   haps_files <- list.files(path = haps_path, pattern = "\\.haps$", full.names = T) %>%
