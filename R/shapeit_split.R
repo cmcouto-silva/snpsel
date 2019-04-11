@@ -2,13 +2,13 @@
 #' @description Split a single dataset (.haps/.sample) by chromossome into multiple files.
 #' @param haps_file Character. File name (with or without .haps extension).
 #' @param output_dir Character. Desired folder to outputs. Default set to current folder.
-#' @param out Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.
+#' @param output_prefix Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.
 #' @return Multiple files from dataset splitted by chromosome unique IDs.
 #' @examples
 #'
 #' \dontrun{
-#' dataset <- "merged.haps" # or just "merged"
-#' split_haps(haps_file = dataset, "splitted_files/", out = "_phased")
+#' dataset <- "merged.haps" # or just "merged" without .haps extension
+#' split_haps(haps_file = dataset, output_dir = "splitted_files/", output_prefix = "_phased")
 #'
 #' # Then, multiple files splitted by chromosomes will be created at the folder "splitted_files",
 #' named "chrID_phased.EXT", where ID is the unique chromosome ID, and EXT is the correspoding extension (.haps/.sample)
