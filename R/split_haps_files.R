@@ -18,7 +18,7 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-split_haps <- function(haps_file, output_dir, output_prefix) {
+shapeit_split <- function(haps_file, output_dir, output_prefix) {
 
   # Standard output
   if(missing(output_dir)) output_dir <- "."
