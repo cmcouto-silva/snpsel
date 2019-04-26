@@ -1,8 +1,8 @@
 #' @title Split Shapeit files (.haps/.sample)
 #' @description Split a single dataset (.haps/.sample) by chromossome into multiple files.
 #' @param haps_file Character. File name (with or without .haps extension).
-#' @param output_dir Character. Desired folder to outputs. Default set to current folder.
-#' @param output_prefix Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.
+#' @param output_dir Character. Desired folder to outputs. Default set to the current folder.
+#' @param output_prefix Character. Desired name to output files after "chrX", where "X" stands by the chromosome ID. Default set to none.
 #' @return Multiple files from dataset splitted by chromosome unique IDs.
 #' @examples
 #'

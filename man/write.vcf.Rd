@@ -4,7 +4,7 @@
 \alias{write.vcf}
 \title{Write .vcf}
 \usage{
-write.vcf(vcf, output, append = F, quote = F, sep = "\\t",
+write.vcf(vcf, out, append = F, quote = F, sep = "\\t",
   row.names = F, col.names = T, ...)
 }
 \arguments{

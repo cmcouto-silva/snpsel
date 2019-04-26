@@ -9,9 +9,9 @@ shapeit_split(haps_file, output_dir, output_prefix)
 \arguments{
 \item{haps_file}{Character. File name (with or without .haps extension).}
 
-\item{output_dir}{Character. Desired folder to outputs. Default set to current folder.}
+\item{output_dir}{Character. Desired folder to outputs. Default set to the current folder.}
 
-\item{output_prefix}{Character. Desired name to output files after "chrX", where "X" is the chromosome ID. Default set to none.}
+\item{output_prefix}{Character. Desired name to output files after "chrX", where "X" stands by the chromosome ID. Default set to none.}
 }
 \value{
 Multiple files from dataset splitted by chromosome unique IDs.

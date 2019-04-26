@@ -4,7 +4,7 @@
 \alias{write.bim}
 \title{Write .bim}
 \usage{
-write.bim(bim, output, append = F, quote = F, sep = "\\t",
+write.bim(bim, out, append = F, quote = F, sep = "\\t",
   row.names = F, col.names = F, ...)
 }
 \arguments{
