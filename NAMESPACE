@@ -2,6 +2,8 @@
 
 export(add.extension)
 export(add_last_bar)
+export(admixture)
+export(admixture.plot)
 export(clean)
 export(df.sub)
 export(eigensoft2plink)
