@@ -22,13 +22,14 @@ add.extension <- function(x, ext, digits = 3L) {
       return(paste0(x, ext))
     }
   })
-
+  
 }
 
 #' @title Remove file extension
 #' @description Remove file extension from a character vector.
 #' @param file Character vector. A vector with one or more characters to get extension removed.
-#' @param digits Scalar integer. Number of characteres in the extension (after the last file dot). 
+#' @param digits Scalar integer. Number of characteres in the extension (after the last file dot).
+#' If NULL, it will automatically be counted as the last characters after the dot.
 #' @return Strings with no extension (file names without extension).
 #' @export
 #' @author Cainã Max Couto da Silva
@@ -41,12 +42,18 @@ rm.extension <- function(file, digits = 3L) {
     ext.digits <- unlist(strsplit(file, "\\."))
     ext.digits <- ext.digits[length(ext.digits)]
     
-    if (nchar(ext.digits) != digits)
-      stop("File extension (size = ", nchar(ext.digits), ") after dot differs from ", digits, " digits.")
+    if(is.null(digits)) {
+      res <- gsub("^(.*)\\..*$", "\\1", file)
+    } else {
+      if (nchar(ext.digits) != digits)
+        stop("File extension (size = ", nchar(ext.digits), ") after dot differs from ", digits, " digits.")
+      pat <- paste0("^(.*)\\..{", digits, "}$")
+      res <- gsub(pat, "\\1", file)
+    }
     
-    pat <- paste0("^(.*)\\..{", digits, "}$")
-    res <- gsub(pat, "\\1", file)
     return(res)
+    
   })
-  
 }
+
+

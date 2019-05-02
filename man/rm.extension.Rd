@@ -9,7 +9,8 @@ rm.extension(file, digits = 3L)
 \arguments{
 \item{file}{Character vector. A vector with one or more characters to get extension removed.}
 
-\item{digits}{Scalar integer. Number of characteres in the extension (after the last file dot).}
+\item{digits}{Scalar integer. Number of characteres in the extension (after the last file dot).
+If NULL, it will automatically be counted as the last characters after the dot.}
 }
 \value{
 Strings with no extension (file names without extension).
