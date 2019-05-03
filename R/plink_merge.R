@@ -16,7 +16,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = 1L) {
   writeLines(ds_match[, SNP.y], paste0(dataset02, '_Rtmp.txt'))
   
   # Running Plink for removing non-match SNPs in each dataset
-  plink <- gt::check_plink_version()
+  plink <- plink_version()
   
   for (ds in c(dataset01, dataset02)) {
     system(paste(
@@ -25,8 +25,8 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = 1L) {
   }
   
   # Loading datasets with matching positions
-  ds1 <- gt::read.bim(paste0(dataset01, '_Rtmp.bim'))
-  ds2 <- gt::read.bim(paste0(dataset02, '_Rtmp.bim'))
+  ds1 <- read.bim(paste0(dataset01, '_Rtmp.bim'))
+  ds2 <- read.bim(paste0(dataset02, '_Rtmp.bim'))
   
   # Equalizing SNP IDs in both datasets
   if(keep.snp.names == 1L){

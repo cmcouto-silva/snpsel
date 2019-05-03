@@ -24,7 +24,7 @@ plink2eigensoft <- function(input, out, mode = 1L, ...) {
     geno <- ifelse(any(names(args) %in% "genotypename"), args$genotypename, paste0(input, '.bed'))
     snp <- ifelse(any(names(args) %in% "snpname"), args$snpname, paste0(input, '.bim'))
     ind <- ifelse(any(names(args) %in% "indivname"), args$indivname, paste0(input, '.fam'))
-    # fid <- ifelse(any(names(args) %in% "familynames"), args$familynames, "YES")
+    fid <- ifelse(any(names(args) %in% "familynames"), args$familynames, "YES")
   } else {
     geno <- ifelse(any(names(args) %in% "genotypename"), args$genotypename, paste0(input, '.ped'))
     snp <- ifelse(any(names(args) %in% "snpname"), args$snpname, paste0(input, '.map'))
@@ -40,8 +40,8 @@ plink2eigensoft <- function(input, out, mode = 1L, ...) {
       outputformat = "EIGENSTRAT",
       genotypeoutname = paste0(out, '.eigenstratgeno'),
       snpoutname = paste0(out, '.snp'),
-      indivoutname = paste0(out, '.ind')#,
-      # familynames = fid
+      indivoutname = paste0(out, '.ind'),
+      familynames = fid
     )
   } else {
     par.file <- list (
