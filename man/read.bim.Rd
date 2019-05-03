@@ -5,8 +5,8 @@
 \title{Read bim file}
 \usage{
 read.bim(bim_file, header = F, col.names = c("CHR", "SNP", "GD", "POS",
-  "A1", "A2"), colClasses = c("integer", "character", rep("integer", 2),
-  rep("character", 2)), ...)
+  "A1", "A2"), colClasses = c("integer", "character", "numeric",
+  "integer", rep("character", 2)), ...)
 }
 \arguments{
 \item{bim_file}{<path_to_bim_file>}
