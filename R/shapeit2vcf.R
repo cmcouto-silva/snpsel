@@ -17,7 +17,7 @@ shapeit2vcf <- function(shapeit_files, output, split = F, keep.split = F) {
     dir.create(dir_split, F)
     
     # Splitting chromosomes
-    shapeit_slipt(haps_file = shapeit_files, output_dir = dir_split)
+    shapeit_split(haps_file = shapeit_files, output_dir = dir_split)
     
     # List of split Shapeit files without extension
     sfiles <- gtools::mixedsort(list.files(path = dir_split, pattern = ".haps", full.names = T)) %>%
