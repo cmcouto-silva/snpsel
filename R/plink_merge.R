@@ -42,8 +42,8 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = 1L) {
   
   files.to.remove <- c (
     paste0(out, ".log"),
-    paste0(paste0(dataset01, '_Rtmp'), c(".bed", ".bim", ".fam", ".log")),
-    paste0(paste0(dataset02, '_Rtmp'), c(".bed", ".bim", ".fam", ".log"))
+    paste0(paste0(dataset01, '_Rtmp'), c(".bed", ".bim", ".fam", ".nosex", ".log")),
+    paste0(paste0(dataset02, '_Rtmp'), c(".bed", ".bim", ".fam", ".nosex", ".log"))
   )
   
   # Dealing with problematic SNPs (flipping strand and removing triallelic+ SNPs )
