@@ -38,7 +38,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = 1L) {
   # Merge datasets
   plink(`--bfile` = paste0(dataset01, '_Rtmp'),
         `--bmerge` = paste0(paste0(dataset02, '_Rtmp'), c('.bed','.bim','.fam'), collapse = " "), 
-        "--make-bed", `--out` = out)
+        "--make-bed", "--allow-no-sex", `--out` = out)
   
   files.to.remove <- c (
     paste0(out, ".log"),
@@ -53,7 +53,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = 1L) {
     
     # Flipping
     plink(`--bfile` = paste0(dataset01, '_Rtmp'), `--flip` = paste0(out, "-merge_Rtmp.missnp"),
-      "--make-bed", `--out` = paste0(dataset01, '_Rtmp'))
+      "--make-bed", "--allow-no-sex", `--out` = paste0(dataset01, '_Rtmp'))
     
     # Trying to merge
     plink(`--bfile` = paste0(dataset01, '_Rtmp'),
