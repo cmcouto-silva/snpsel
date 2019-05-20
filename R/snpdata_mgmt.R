@@ -129,7 +129,7 @@ snpdata_mgmt <- function(bim_file,
   
   # Saving file
   if (!identical(bim, bim.merge[, .(CHR, SNP, GD, POS, A1, A2)]) | (any(dup_pos) & remove_dup_pos)) {
-    write.bim(bim = bim.merge[, .(CHR, SNP, GD, POS, A1, A2)], output = bim_file)
+    write.bim(bim = bim.merge[, .(CHR, SNP, GD, POS, A1, A2)], out = bim_file)
     cat(paste0(nbar, "File '", bim_file, "'", " has been overwritten.\n"))
   } else {
     cat(nbar, "No changes on dataset has been done!\n")

@@ -10,7 +10,7 @@ write.bim(bim, out, append = F, quote = F, sep = "\\t",
 \arguments{
 \item{bim}{Dataframe. A data.table, data.frame or matrix object to be saved as bim file.}
 
-\item{output}{Character scalar. A character containg the name for desired output.}
+\item{out}{Character scalar. A character containg the name for desired output.}
 }
 \value{
 Written file

@@ -1,7 +1,7 @@
 #' @title Write .bim
 #' @description Write (plink) bim file
 #' @param bim Dataframe. A data.table, data.frame or matrix object to be saved as bim file.
-#' @param output Character scalar. A character containg the name for desired output.
+#' @param out Character scalar. A character containg the name for desired output.
 #' @return Written file
 #' @export
 
