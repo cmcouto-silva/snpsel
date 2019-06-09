@@ -4,7 +4,8 @@
 \alias{get_snp_genes}
 \title{Get Gene info from SNP ID}
 \usage{
-get_snp_genes(snp, ref)
+get_snp_genes(snp,
+  ref = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation")
 }
 \arguments{
 \item{snp}{Character. Vector with rs IDs.}
