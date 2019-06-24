@@ -20,7 +20,6 @@
 #' @export
 #' @author Cainã Max Couto-Silva
 
-
 shapeit_set_ancestor <- function(shapeit,
                                  ref = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation/1000g_ancestor/human_ancestor_GRCh37_e59/",
                                  out) {
@@ -59,14 +58,17 @@ shapeit_set_ancestor <- function(shapeit,
   haps <- haps[!(A1 != AA & A2 != AA)]
   
   # Getting indexes to invert alleles to change SNP IDs and Genotypes
-  swap_geno <- c(rbind(colnames(haps)[-(1:6)][c(F,T)], colnames(haps)[-(1:6)][c(T,F)]))
+  # swap_geno <- c(rbind(colnames(haps)[-(1:6)][c(F,T)], colnames(haps)[-(1:6)][c(T,F)])) # change pair column order
   snp_inv_idx <- haps[, A1 != AA]
   
   # Invert SNP IDs
   haps[snp_inv_idx, c('A1', 'A2'):= .(A2, A1)]
   
   # Invert SNP Alleles
-  haps[snp_inv_idx, colnames(haps)[-(1:6)] := .SD, .SDcols = swap_geno]
+  # haps[snp_inv_idx, colnames(haps)[-(1:6)] := .SD, .SDcols = swap_geno] # change pair column order
+  haps[snp_inv_idx, colnames(haps)[-(1:6)] := lapply(.SD, function(allele) {
+    ifelse(allele == 1L, 0L, 1L)
+  }), .SDcols = colnames(haps)[-(1:6)]]
   
   # Remove AA column
   haps[, AA := NULL]
@@ -76,4 +78,3 @@ shapeit_set_ancestor <- function(shapeit,
   data.table::fwrite(sample, paste0(out, ".sample"), sep = " ", col.names = F, quote = F, na = 0L)
   
 }
-
