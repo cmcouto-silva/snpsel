@@ -73,7 +73,7 @@ shapeit_set_ancestor <- function(shapeit,
   
   # Write output files
   data.table::fwrite(haps, paste0(out, ".haps"), sep = " ", col.names = F)
-  data.table::fwrite(sample, paste0(out, ".sample"), sep = " ", col.names = F)
+  data.table::fwrite(sample, paste0(out, ".sample"), sep = " ", col.names = F, quote = F, na = 0L)
   
 }
 
