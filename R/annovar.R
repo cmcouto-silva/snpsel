@@ -34,20 +34,20 @@ annovar <- function(bim, out, build = "hg19", ref_annovar = "~/cmcouto.silva@usp
   }
   
   # Add .avinput extension to output
-  out <- paste0(out, ".avinput")
+  avinput_file <- paste0(out, ".avinput")
   
   # Produce ANNOVAR input
   avinput <- bim[, .(CHR, POS, POS, A1, A2)]
   
   # Write out annovar input
-  data.table::fwrite(avinput, paste0(out, ".avinput"), sep = " ", col.names = F)
+  data.table::fwrite(avinput, avinput_file, sep = " ", col.names = F)
   
   # Check if ANNOVAR is installed on path
   gt::program_on_path("annotate_variation.pl")
   
   # Running ANNOVAR
   system(paste(
-    "annotate_variation.pl", "-build", build, out, ref_annovar
+    "annotate_variation.pl", "-build", build, avinput_file, ref_annovar, "-out", out
   ))
   
   # Load ANNOVAR annotation & tidying output
