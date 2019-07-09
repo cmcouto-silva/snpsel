@@ -109,13 +109,12 @@ snpdata_mgmt <- function(bim_file,
   
   # Update SNP IDs
   if(update_snpID) {
-    bim.merge[!is.na(`dbSNP RS ID`) & !is.na(`Affy SNP ID`), 
-              SNP := ifelse(grepl("^rs", `dbSNP RS ID`), `dbSNP RS ID`, `Affy SNP ID`)]
+    bim.merge[!is.na(`Affy SNP ID`), SNP := ifelse(grepl("^rs", `dbSNP RS ID`), `dbSNP RS ID`, `Affy SNP ID`)]
   }
   
   # Update alleles
   if(update_alleles) {
-    bim.merge[!is.na(`Ref Allele`) & !is.na(`Alt Allele`) & A1 == 0L, 
+    bim.merge[!is.na(`Ref Allele`) & !is.na(`Alt Allele`) & A1 != 0L, 
               A1 := ifelse(A2 == `Alt Allele`, `Ref Allele`, `Alt Allele`)]
   }
   
