@@ -115,7 +115,7 @@ snpdata_mgmt <- function(bim_file,
   
   # Update alleles
   if(update_alleles) {
-    bim.merge[!is.na(`Ref Allele`) & !is.na(`Alt Allele`) & A1 != 0L, 
+    bim.merge[!is.na(`Ref Allele`) & !is.na(`Alt Allele`) & A1 == 0L, 
               A1 := ifelse(A2 == `Alt Allele`, `Ref Allele`, `Alt Allele`)]
   }
   
