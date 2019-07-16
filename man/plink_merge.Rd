@@ -4,7 +4,7 @@
 \alias{plink_merge}
 \title{Merge Plink files}
 \usage{
-plink_merge(dataset01, dataset02, out, keep.snp.names = 1L)
+plink_merge(dataset01, dataset02, out, keep.snp.names = NULL)
 }
 \description{
 Merge Plink files
