@@ -5,7 +5,7 @@
 \title{Adjust Ancentral/Derived Alleles According to Reference}
 \usage{
 shapeit_set_ancestor(shapeit,
-  ref = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation/1000g_ancestor/human_ancestor_GRCh37_e59/",
+  ref = "~/cmcouto.silva@usp.br/lab_files/datasets/Reference_annotation/1000g_ancestor/human_ancestor_GRCh37_e59/",
   out)
 }
 \arguments{
