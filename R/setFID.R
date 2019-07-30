@@ -23,7 +23,7 @@ setFID <- function(fam, ref, merge.col = 1, target.col = 3, header = F, force = 
   
   m <- merge(fam, ref, by.x = "V2", by.y = merge.col, sort = F)
   
-  if(nrow(fam) == nrow(m) && force == F)
+  if(nrow(fam) != nrow(m) && force == F)
     stop("Not all Individuals from Plink file is on reference. If you want to continue anyway, re-run with force = TRUE.")
   
   fam[, V1 := m[, target.col, with = F]]
