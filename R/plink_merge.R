@@ -32,7 +32,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = NULL) {
     if(nrow(ds1) != nrow(ds2)) {
       stop("There are duplicated SNP IDs. Please remove them before running thins function.")
     }
-    
+    unlink("mutual_vars_Rtmp.txt")
   }
   
   # Extract Mutual Variants by chr:pos
@@ -121,5 +121,6 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = NULL) {
       paste0(out, '-merge_Rtmp.missnp'),
       paste0(dataset01, '*~'))
     )
+    unlink(files.to.remove)
   }
 }
