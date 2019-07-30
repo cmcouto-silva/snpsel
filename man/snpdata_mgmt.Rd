@@ -5,7 +5,7 @@
 \title{SNP Data Management}
 \usage{
 snpdata_mgmt(bim_file,
-  Affx_HuOrigin = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Annot/Axiom_GW_HuOrigin.na35.annot.csv",
+  Affx_HuOrigin = "~/cmcouto.silva@usp.br/lab_files/datasets/Reference_annotation/Affymetrix/Axiom_GW_HuOrigin.na35.annot.csv",
   update_snpID = T, update_alleles = T, remove_dup_pos = F)
 }
 \arguments{
