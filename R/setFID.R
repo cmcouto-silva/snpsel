@@ -27,6 +27,6 @@ setFID <- function(fam, ref, merge.col = 1, target.col = 3, header = F, force = 
     stop("Not all Individuals from Plink file is on reference. If you want to continue anyway, re-run with force = TRUE.")
   
   fam[, V1 := m[, target.col, with = F]]
-  fwrite(fam, fam_file, header = " ", col.names = F)
+  fwrite(fam, fam_file, sep = " ", col.names = F)
   
 }
