@@ -36,7 +36,7 @@ shapeit_split <- function(haps_file, output_dir, output_prefix) {
   # Writing files .haps/.sample
   for(chr in unique(haps_files[, V1])){
     data.table::fwrite(haps_files[V1 == chr], paste0(output_dir, "chr", chr, output_prefix, ".haps"), sep = " ", col.names = F)
-    data.table::fwrite(sample_files, paste0(output_dir, "chr", chr, output_prefix, ".sample"), sep = " ", col.names = F)
+    data.table::fwrite(sample_files, paste0(output_dir, "chr", chr, output_prefix, ".sample"), quote = F, na = "0", sep = " ", col.names = F)
   }
 
 }
