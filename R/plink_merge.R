@@ -69,7 +69,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = NULL) {
       write.bim(ds2, paste0(dataset02, '_Rtmp.bim'))
     } else {
       ds1[, SNP := ds2[, SNP]]
-      write.bim(ds1, paste0(dataset02, '_Rtmp.bim'))
+      write.bim(ds1, paste0(dataset01, '_Rtmp.bim'))
     }
     
   }
