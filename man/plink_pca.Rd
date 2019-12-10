@@ -4,9 +4,21 @@
 \alias{plink_pca}
 \title{Plink PCA analysis}
 \usage{
-plink_pca(input, output, pop, col, pop_col, ell_col, ld = c(50, 5, 0.5),
-  pc.x = c(2, 3, 4, 3, 4, 4), pc.y = c(1, 1, 1, 2, 2, 3), k,
-  track_outlier = F, plot = T, plot_type = "png")
+plink_pca(
+  input,
+  output,
+  pop,
+  col,
+  pop_col,
+  ell_col,
+  ld = c(50, 5, 0.5),
+  pc.x = c(2, 3, 4, 3, 4, 4),
+  pc.y = c(1, 1, 1, 2, 2, 3),
+  k,
+  track_outlier = F,
+  plot = T,
+  plot_type = "png"
+)
 }
 \arguments{
 \item{input}{Character. The name (and path) of the plink binary files without extension.}

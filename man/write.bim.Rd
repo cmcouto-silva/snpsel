@@ -4,8 +4,16 @@
 \alias{write.bim}
 \title{Write .bim}
 \usage{
-write.bim(bim, out, append = F, quote = F, sep = "\\t",
-  row.names = F, col.names = F, ...)
+write.bim(
+  bim,
+  out,
+  append = F,
+  quote = F,
+  sep = "\\t",
+  row.names = F,
+  col.names = F,
+  ...
+)
 }
 \arguments{
 \item{bim}{Dataframe. A data.table, data.frame or matrix object to be saved as bim file.}

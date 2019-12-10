@@ -4,8 +4,13 @@
 \alias{annovar}
 \title{Annotate Genes}
 \usage{
-annovar(bim, out, build = "hg19",
-  ref_annovar = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation/annovar")
+annovar(
+  bim,
+  out,
+  build = "hg19",
+ 
+    ref_annovar = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation/annovar"
+)
 }
 \arguments{
 \item{bim}{Scalar character. Path to Plink bim file.}

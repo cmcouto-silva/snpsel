@@ -4,8 +4,7 @@
 \alias{setFID}
 \title{Set Family ID}
 \usage{
-setFID(fam, ref, merge.col = 1, target.col = 3, header = F,
-  force = F)
+setFID(fam, ref, merge.col = 1, target.col = 3, header = F, force = F)
 }
 \arguments{
 \item{fam}{Path to .fam file.}

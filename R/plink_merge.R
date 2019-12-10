@@ -121,6 +121,6 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = NULL) {
       paste0(out, '-merge_Rtmp.missnp'),
       paste0(dataset01, '*~'))
     )
-    unlink(files.to.remove)
   }
+  unlink(files.to.remove)
 }
