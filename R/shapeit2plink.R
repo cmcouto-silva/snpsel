@@ -35,15 +35,14 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.family.names = T, 
   Please try running this function again with parameter split = TRUE.")
   
   ## Conversion from VCF to Plink
-  
   if(mode == 1L | (mode == 2L & keep.family.names)) {
     # Conversion from VCF to Plink binary format
-    plink(`--vcf` = paste0(out, '.vcf'), "--double-id", "--make-bed", `--out` = out)
+    plink(`--vcf` = paste0(out, '.vcf'), "--keep-allele-order --allow-no-sex --double-id", "--make-bed", `--out` = out)
   }
   
   if(mode == 2L & isFALSE(keep.family.names)) {
     # Conversion from VCF to Plink human-readable format
-    plink(`--vcf` = paste0(out, '.vcf'), "--double-id", "--recode", `--out` = out)
+    plink(`--vcf` = paste0(out, '.vcf'), "--keep-allele-order --allow-no-sex --double-id", "--recode", `--out` = out)
   }
     
   # Updating Family IDs
@@ -58,10 +57,10 @@ shapeit2plink <- function(shapeit_files, out, mode = 1L, keep.family.names = T, 
     data.table::fwrite(recode_ids, out_recode, sep = " ", col.names = F)
     
     if(mode == 1L) {
-      plink(`--bfile` = out, `--update-ids` = out_recode, '--make-bed', `--out` = out)
+      plink(`--bfile` = out, `--update-ids` = out_recode, '--keep-allele-order --allow-no-sex --make-bed', `--out` = out)
       unlink(c(paste0(out,"*~"), out_recode))
     } else {
-      plink(`--bfile` = out, `--update-ids` = out_recode, '--recode', `--out` = out)
+      plink(`--bfile` = out, `--update-ids` = out_recode, '--keep-allele-order --allow-no-sex --recode', `--out` = out)
       unlink(c(paste0(out, c('.bed','.bim','.fam','.log')), paste0(out,"*~"), out_recode))
     }
   }
