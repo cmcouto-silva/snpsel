@@ -30,7 +30,7 @@ update_dist_genes <- function(genes, thres = 10000, rm_gene_info = TRUE) {
   idx_thres <- lapply(isolated_dist, function(x) x <= thres)
   
   genes_final <- mapply(function(g, t) {
-    paste0(g[t], collapse = ",")
+    paste0(g[t[!is.na(t)]], collapse = ",")
   }, g = isolated_genes, t = idx_thres)
   
   genes[idx] <- genes_final
