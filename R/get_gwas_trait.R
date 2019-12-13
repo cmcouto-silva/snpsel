@@ -1,3 +1,4 @@
+#' @author Cainã Max Couto-Silva
 #' @importFrom gwasrapidd get_studies
 #' @export
 get_gwas_trait <- function(snp, batch = 1000) {

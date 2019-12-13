@@ -1,3 +1,22 @@
+#' @title Identify outliers
+#' @description This function detects outliers in vector or data.table objects.
+#' @param x Vector, data.frame, data.table or matrix with continuous numeric values.
+#' @param col_name If x is a data.frame/data.table/matrix, please specify the column name
+#' with the continous numeric values.
+#' @param extreme logical. If TRUE, extreme outliers will be identified. Default set to FALSE.
+#' \dontrun{
+#' # load data
+#' data(iris)
+#' 
+#' # keep only outliers in a vector
+#' vec <- iris$Sepal.Width
+#' outlier(vec)
+#' 
+#' # keep only outliers in the data.frame
+#' outlier(iris, "Sepal.Width")
+#' }
+#' @return Inputted object with outliers. 
+#' @author Cainã Max Couto-Silva
 #' @export
 
 outlier <- function(x, col_name = NULL, extreme = F) {

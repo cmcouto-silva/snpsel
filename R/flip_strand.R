@@ -7,6 +7,7 @@
 #' (vec <- unlist(strsplit("ACGTAC", "")))
 #' flip_strand(vec)
 #' }
+#' @author Cainã Max Couto-Silva
 #' @export
 
 flip_strand <- function(flip) {

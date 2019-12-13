@@ -21,3 +21,6 @@ Flip DNA strand' bases to correspondent the strand bases.
 flip_strand(vec)
 }
 }
+\author{
+Cainã Max Couto-Silva
+}

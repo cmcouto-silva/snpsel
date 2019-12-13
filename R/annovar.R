@@ -20,7 +20,7 @@
 #' @export
 #' @author Cainã Max Couto-Silva
 
-annovar <- function(bim, out, build = "hg19", ref_annovar = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation/annovar") {
+annovar <- function(bim, out, build = "hg19", ref_annovar = "~/cmcouto.silva@usp.br/lab_files/datasets/Reference_annotation/annovar") {
   
   # Store bim file path
   bim_file <- bim
