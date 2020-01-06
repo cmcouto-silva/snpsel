@@ -1,13 +1,13 @@
 #' @title Set Family ID
-#' @description This function updates family IDs from .fam file according to a reference table.
-#' @param fam Path to .fam file.
+#' @description This function updates family IDs from a .fam file (PLINK) according to a reference table.
+#' @param fam Path to the .fam file.
 #' @param ref Path to reference file.
 #' @param merge.col Either the name or index from the column that will be merged (with same Individual IDs from .fam file).
 #' @param target.col Either the name or index from the target column in reference that will be set as family IDs.
-#' @param header Logical. Does reference table has a header?
+#' @param header Logical. Does the reference table has a header?
 #' @param force Logical. Should family IDs be updated even if not all individuals from fam file is on reference (merge.col).
-#' @param ... Graphical parameters
-#' @return Admixture barplot
+#' @import data.table
+#' @return Updated .fam file.
 #' @author Cainã Max Couto-Silva.
 #' @export
 

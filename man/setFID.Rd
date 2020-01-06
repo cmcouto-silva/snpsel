@@ -7,7 +7,7 @@
 setFID(fam, ref, merge.col = 1, target.col = 3, header = F, force = F)
 }
 \arguments{
-\item{fam}{Path to .fam file.}
+\item{fam}{Path to the .fam file.}
 
 \item{ref}{Path to reference file.}
 
@@ -15,17 +15,15 @@ setFID(fam, ref, merge.col = 1, target.col = 3, header = F, force = F)
 
 \item{target.col}{Either the name or index from the target column in reference that will be set as family IDs.}
 
-\item{header}{Logical. Does reference table has a header?}
+\item{header}{Logical. Does the reference table has a header?}
 
 \item{force}{Logical. Should family IDs be updated even if not all individuals from fam file is on reference (merge.col).}
-
-\item{...}{Graphical parameters}
 }
 \value{
-Admixture barplot
+Updated .fam file.
 }
 \description{
-This function updates family IDs from .fam file according to a reference table.
+This function updates family IDs from a .fam file (PLINK) according to a reference table.
 }
 \author{
 Cainã Max Couto-Silva.
