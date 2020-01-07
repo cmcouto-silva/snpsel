@@ -30,7 +30,7 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
   program_on_path("plink")
   
   # Verify required files already exist in the current path 
-  plink_files <- paste0("plink.", c("bed", "bim", "fam", "log", "nosex", "prune.in", "prune.out"))#, "eigenval", "eigenvec"))
+  plink_files <- paste0("plink.", c("bed", "bim", "fam", "log", "nosex", "prune.in", "prune.out", "eigenval", "eigenvec"))
   plink_files_on_path <- plink_files[plink_files %in% dir()]
   
   if(length(plink_files_on_path > 0)) {
@@ -48,12 +48,17 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
   }
   
   # Load Plink PCA Results
-  # eigenval <- data.table::fread("plink.eigenval")
+  eigenval <- as.numeric(readLines("plink.eigenval"))
   eigenvec <- data.table::fread("plink.eigenvec")
   names(eigenvec) <- c("FID", "IID", paste0("PC", 1:(length(eigenvec)-2)))
   
   # Write PCA Results
-  fwrite(eigenvec, paste0(output, '.pca.txt'), sep = "\t")
+  file.copy(from = c("plink.eigenval", "plink.eigenvec"),
+            to = paste0(output, c(".eigenval",".eigenvec"))
+  )
+  
+  # fwrite(eigenval, paste0(output, '.eigenval'), sep = "\t")
+  # fwrite(eigenvec, paste0(output, '.pca.txt'), sep = "\t")
   
   # Setting up groups and ellipses
   if(missing(pop)) {
@@ -96,7 +101,8 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
       
       pc <- ggplot(pca, aes(x = get(paste0("PC", x)), y = get(paste0("PC", y)))) +
         geom_point(aes(col = Population), alpha = 1, size = 2) +
-        labs(x = paste0("PC", x), y = paste0("PC", y)) +
+        labs(x = paste0("PC", x, "  ", round(eigenval[x], 2), "%"),
+             y = paste0("PC", y, "  ", round(eigenval[y], 2), "%")) +
         theme_classic() +
         theme (
           text = element_text(family = "Arial", size = 12),
@@ -135,14 +141,14 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
       
       if(plot_type == "pdf") {pc.x = 
         pdf(file = paste0(output, "_pc.x", pc.x[i], ".y", pc.y[i], ".pdf"), width = 14, height = 14, family = "Times")
-        pc_list[[i]]
-        dev.off()
+      pc_list[[i]]
+      dev.off()
       }
       
       if(plot_type %in% c("bmp", "jpeg","png", "tiff")) {
-        out <- paste0(output, "_pc.x", pc.x[i], ".y", pc.y[i], ".", plot_type)
+        out <- paste0(output, "_PC", pc.y[i], "-PC", pc.x[i], ".", plot_type)
         eval(parse(text = paste0(
-          plot_type, "(", "'", out, ".", plot_type, "'", ", width = 36, height = 20, units = 'cm', res = 600)"
+          plot_type, "(", "'", out, "'", ", width = 36, height = 20, units = 'cm', res = 600)"
         )))
         
         print(pc_list[[i]])
@@ -159,3 +165,4 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
   }
   
 }
+
