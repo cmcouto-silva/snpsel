@@ -9,12 +9,14 @@ plink_pca(
   output,
   pop,
   col,
+  iid_col,
   pop_col,
   ell_col,
   ld = c(50, 5, 0.5),
   pc.x = c(2, 3, 4, 3, 4, 4),
   pc.y = c(1, 1, 1, 2, 2, 3),
   k,
+  track_iid,
   track_outlier = F,
   plot = T,
   plot_type = "png"
@@ -29,6 +31,8 @@ plink_pca(
 and additional columns with desired information for grouping populations (color and/or ellipses).}
 
 \item{col}{Optional. A named vector containing color name/code for each population.}
+
+\item{iid_col}{Optional. Character. Column name of the pop data.frame/data.table indicating the target-individuals.}
 
 \item{pop_col}{Optional. Character. Column name of the pop data.frame/data.table indicating the target-populations.}
 

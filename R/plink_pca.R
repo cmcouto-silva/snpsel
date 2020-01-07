@@ -5,6 +5,7 @@
 #' @param pop Optional. Data.frame or data.table containing the first two columns of the fam file (named as FID and IID, respectively),
 #' and additional columns with desired information for grouping populations (color and/or ellipses).
 #' @param col Optional. A named vector containing color name/code for each population. 
+#' @param iid_col Optional. Character. Column name of the pop data.frame/data.table indicating the target-individuals.
 #' @param pop_col Optional. Character. Column name of the pop data.frame/data.table indicating the target-populations.
 #' @param ell_col Optional. Character. Column name of the pop data.frame/data.table for plotting ellipses.
 #' These ellipses are normal confidence ellipses computed by 'stat_ellipse' function from 'ggplot2' package.
@@ -19,9 +20,8 @@
 #' @return List of PCA figures tracking down outlier individuals. Written PCA table and figures.
 #' @export
 
-
-plink_pca <- function(input, output, pop, col, pop_col, ell_col, ld = c(50, 5, 0.5),
-                      pc.x = c(2, 3, 4, 3, 4, 4), pc.y = c(1, 1, 1, 2, 2, 3), k, 
+plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c(50, 5, 0.5),
+                      pc.x = c(2, 3, 4, 3, 4, 4), pc.y = c(1, 1, 1, 2, 2, 3), k, track_iid,
                       track_outlier = F, plot = T, plot_type = "png") {
   
   # Check if plink is installed on path
@@ -61,24 +61,25 @@ plink_pca <- function(input, output, pop, col, pop_col, ell_col, ld = c(50, 5, 0
     
   } else {
     pop <- as.data.table(pop)
-    pca <- merge(eigenvec, pop, by.x = c("FID","IID"), by.y = c("FID","IID"), sort = F)
+    pca <- merge(eigenvec, pop, by.x = iid_col, by.y = "IID", sort = F)
     
     if(nrow(eigenvec) != nrow(pca)) {
       stop("All IDs from plink file must be present in the annotation file.")
     }
     
-    if(!missing(pop_col)) {
-      pca[, Population := as.factor(get(pop_col))]
-    } else {
-      pca[, Population := as.factor(FID)]
-    }
+    # if(!missing(pop_col)) {
+    #   pca[, Population := as.factor(get(pop_col))]
+    # } else {
+    #   pca[, Population := as.factor(FID)]
+    # }
+    
+    pca[, Population := as.factor(get(pop_col))]
     
     if(!missing(ell_col)) pca[, Ellipse := as.factor(get(ell_col))]
     if(missing(pop_col) & missing(ell_col)) {
       cat("\n")
       warning("Population Reference provided, but not column selected. It'll use Family ID as groups.")
     }
-      
   }
   
   if(isTRUE(plot)) {
@@ -116,6 +117,12 @@ plink_pca <- function(input, output, pop, col, pop_col, ell_col, ld = c(50, 5, 0
           outlier_dt <- pca[IID %in% outlier_iid]
           pc <- pc + ggrepel::geom_label_repel(outlier_dt, mapping = aes(label = IID), point.padding = 1, nudge_x = 0.01)
         }
+      }
+      
+      if(!missing(track_iid)) {
+        pc$target_iid <- track_iid
+        target_dt <- pca[IID %in% track_iid]
+        pc <- pc + ggrepel::geom_label_repel(target_dt, mapping = aes(label = IID), point.padding = 1, nudge_x = 0.01)
       }
       
       return(pc)
