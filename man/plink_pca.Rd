@@ -16,7 +16,7 @@ plink_pca(
   pc.x = c(2, 3, 4, 3, 4, 4),
   pc.y = c(1, 1, 1, 2, 2, 3),
   k,
-  track_iid,
+  track_iid = F,
   track_outlier = F,
   plot = T,
   plot_type = "png"
@@ -47,6 +47,8 @@ Default set to c(50, 5, 05). Set it to NULL if no LD filter is desired.}
 \item{pc.y}{Numeric vector. PC IDs for plotting. Default set to c(1, 1, 1, 2, 2, 3).}
 
 \item{k}{Numeric. Max number of PCs to be combined as figures. Default set to the length of pc.x/pc.y}
+
+\item{track_iid}{Target individuals to be mapped on plot. Default set to FALSE.}
 
 \item{track_outlier}{Logical. Should outlier individuals be tracked on the figures? Default set to FALSE.}
 
