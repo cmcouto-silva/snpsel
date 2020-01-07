@@ -48,7 +48,7 @@ Default set to c(50, 5, 05). Set it to NULL if no LD filter is desired.}
 
 \item{k}{Numeric. Max number of PCs to be combined as figures. Default set to the length of pc.x/pc.y}
 
-\item{track_iid}{Target individuals to be mapped on plot. Default set to FALSE.}
+\item{track_iid}{Character vector. Target individuals to be mapped on plot. Default set to FALSE (none).}
 
 \item{track_outlier}{Logical. Should outlier individuals be tracked on the figures? Default set to FALSE.}
 

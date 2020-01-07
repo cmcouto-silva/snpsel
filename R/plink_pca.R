@@ -16,7 +16,7 @@
 #' @param k Numeric. Max number of PCs to be combined as figures. Default set to the length of pc.x/pc.y
 #' @param plot Logical. Should PCA figures be generated? Default set to TRUE.
 #' @param plot_type Character. File format for output figures (e.g. bmp, jpeg, png, tiff, or pdf). Default set to png.
-#' @param track_iid Target individuals to be mapped on plot. Default set to FALSE.
+#' @param track_iid Character vector. Target individuals to be mapped on plot. Default set to FALSE (none).
 #' @param track_outlier Logical. Should outlier individuals be tracked on the figures? Default set to FALSE.
 #' @return List of PCA figures tracking down outlier individuals. Written PCA table and figures.
 #' @export
@@ -30,7 +30,7 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
   program_on_path("plink")
   
   # Verify required files already exist in the current path 
-  plink_files <- paste0("plink.", c("bed", "bim", "fam", "log", "nosex", "prune.in", "prune.out", "eigenval", "eigenvec"))
+  plink_files <- paste0("plink.", c("bed", "bim", "fam", "log", "nosex", "prune.in", "prune.out"))#, "eigenval", "eigenvec"))
   plink_files_on_path <- plink_files[plink_files %in% dir()]
   
   if(length(plink_files_on_path > 0)) {
