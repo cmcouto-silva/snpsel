@@ -49,6 +49,8 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
   
   # Load Plink PCA Results
   eigenval <- as.numeric(readLines("plink.eigenval"))
+  eigenval <- eigenval/sum(eigenval)*100
+  
   eigenvec <- data.table::fread("plink.eigenvec")
   names(eigenvec) <- c("FID", "IID", paste0("PC", 1:(length(eigenvec)-2)))
   
