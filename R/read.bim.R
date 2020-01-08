@@ -10,6 +10,6 @@
 #' @export
 #' @author Cainã Max Couto da Silva
 
-read.bim <- function(bim_file, header = F, col.names = c("CHR","SNP","GD","POS","A1", "A2")) {
+read.bim <- function(bim_file, header = F, col.names = c("CHR","SNP","GD","POS","A1", "A2"), ...) {
   data.table::fread(bim_file, header = F, col.names = col.names, ...)
 }

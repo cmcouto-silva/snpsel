@@ -7,7 +7,8 @@
 read.bim(
   bim_file,
   header = F,
-  col.names = c("CHR", "SNP", "GD", "POS", "A1", "A2")
+  col.names = c("CHR", "SNP", "GD", "POS", "A1", "A2"),
+  ...
 )
 }
 \arguments{
