@@ -30,7 +30,7 @@ plink_merge <- function(dataset01, dataset02, out, keep.snp.names = NULL) {
     
     # Checking duplicated positions by chromosome
     if(nrow(ds1) != nrow(ds2)) {
-      stop("There are duplicated SNP IDs. Please remove them before running thins function.")
+      stop("There are duplicated SNP IDs. Please remove them before running this function.")
     }
     unlink("mutual_vars_Rtmp.txt")
   }
