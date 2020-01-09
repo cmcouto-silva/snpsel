@@ -162,6 +162,10 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
     # Remove temporary files
     unlink(plink_files)
     
+    if(length(pc_list) == 1) {
+      return(unlist(pc_list))
+    }
+    
     return(pc_list)    
     
   }
