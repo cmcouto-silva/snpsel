@@ -70,7 +70,7 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
     
   } else {
     pop <- as.data.table(pop)
-    pca <- merge(eigenvec, pop, by.x = iid_col, by.y = "IID", sort = F)
+    pca <- merge(eigenvec, pop, by.x = "IID", by.y = iid_col, sort = F)
     
     if(nrow(eigenvec) != nrow(pca)) {
       stop("All IDs from plink file must be present in the annotation file.")
