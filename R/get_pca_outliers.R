@@ -8,15 +8,15 @@
 #' @author Cainã Max Couto-Silva
 #' @export
 
-get_pca_outliers <- function(plt, cols = c("IID", "Population"), PCx = 2, PCy = 1) {
+get_pca_outliers <- function(plt, cols = c("IID", "Population"), PCx = 2, PCy = 1, extreme = FALSE) {
   
   populations <- plt$data[, unique(Population)]
   
   outliers_lst <- lapply(populations, function(pop) {
     plt <- plt$data[Population == pop]
     out <- intersect (
-      outlier(plt, col_name = paste0("PC", PCx))[, IID],
-      outlier(plt, col_name = paste0("PC", PCy))[, IID])
+      gt::outlier(plt, col_name = paste0("PC", PCx), extreme)[, IID],
+      outlier(plt, col_name = paste0("PC", PCy), extreme)[, IID])
     plt <- plt[IID %in% out, .SD, .SDcols = cols]
     return(plt)
   })

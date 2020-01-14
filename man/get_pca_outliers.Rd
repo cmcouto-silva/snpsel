@@ -4,7 +4,13 @@
 \alias{get_pca_outliers}
 \title{Identify Outliers in PCA per group}
 \usage{
-get_pca_outliers(plt, cols = c("IID", "Population"), PCx = 2, PCy = 1)
+get_pca_outliers(
+  plt,
+  cols = c("IID", "Population"),
+  PCx = 2,
+  PCy = 1,
+  extreme = FALSE
+)
 }
 \arguments{
 \item{plt}{Output from plink_pca() function.}
