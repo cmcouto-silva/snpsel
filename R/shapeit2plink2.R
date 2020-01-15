@@ -1,13 +1,10 @@
 #' @export
+#' 
 shapeit2plink2 <- function(shapeit_files, out) {
   
   # Checking if required programs are installed on system path
   program_on_path("shapeit")
   program_on_path("plink2")
-  
-  # Checking mode
-  if(!mode %in% 1:2)
-    stop("mode must be 1 (for binary files ─ .bed/.bim/.fam) or 2 (for human-readable files ─ .ped/.map).")
   
   # Missing output
   if(missing(out)) out <- shapeit_files
