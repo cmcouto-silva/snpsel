@@ -38,6 +38,9 @@ plink_pca <- function(input, output, pop, col, iid_col, pop_col, ell_col, ld = c
          " file(s) exist on the current path. Please remove/rename them first.")
   }
   
+  # Add default output
+  if(missing(output)) output <- input
+  
   # Run Plink PCA Analysis
   if(!is.null(ld)) {
     plink(`--bfile` = input, `--indep-pairwise` = paste(ld, collapse = " "))
