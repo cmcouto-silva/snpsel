@@ -49,7 +49,7 @@ plink2eigensoft <- function(input, out, mode = 1L, ...) {
       snpname = snp,
       indivname = ind,
       outputformat = "EIGENSTRAT",
-      genotypeoutname = paste0(out, '.eigenstratgeno'),
+      genotypeoutname = paste0(out, '.geno'),
       snpoutname = paste0(out, '.snp'),
       indivoutname = paste0(out, '.ind')
     )
