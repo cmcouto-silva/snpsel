@@ -4,7 +4,7 @@
 \alias{plink2eigensoft}
 \title{Conversion from Plink to Eigenstrat format}
 \usage{
-plink2eigensoft(input, out, mode = 1L, ...)
+plink2eigensoft(input, out, mode = 1L)
 }
 \arguments{
 \item{input}{Scalar character. Name of the file in Plink format without extensions.}
@@ -13,15 +13,16 @@ plink2eigensoft(input, out, mode = 1L, ...)
 
 \item{mode}{Integer. Mode 1 considers input data as in binary format (.bed/.bim/.fam; default),
 while mode = 2 considers the Plink human-readable format (.ped/.map).}
-
-\item{...}{Could be "geno", "snp", or "ind", indicating the specific (full) names of the Eigensoft files.
-These arguments stand by the options "genotypename", "snpname", "indivname", respectivelly.}
 }
 \value{
 Genotypic data in Engeinstrat format.
 }
 \description{
 Conversion from Plink to Eigenstrat format
+}
+\details{
+Important note: This function assumes there's no ":" (colon) in the family names and individual IDs. Also, if all phenotypes are missing
+(6th column of .ped/.map file), then all individuals will be considered. Otherwise only individuals with phenotype info will be taken.
 }
 \author{
 Cainã Max Couto-Silva

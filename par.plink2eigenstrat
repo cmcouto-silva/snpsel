@@ -1,0 +1,8 @@
+genotypename: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/dataset/phased_adj_alleles/plink.bed
+snpname: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/dataset/phased_adj_alleles/plink.bim
+indivname: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/dataset/phased_adj_alleles/plink.fam
+outputformat: EIGENSTRAT
+genotypeoutname: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/admixr/plink.geno
+snpoutname: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/admixr/plink.snp
+indivoutname: /home/cmcouto-silva/cmcouto.silva@usp.br/lab_files/phd_data/admixr/plink.ind
+familynames: YES
