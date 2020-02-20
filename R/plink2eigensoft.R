@@ -12,7 +12,7 @@
 plink2eigensoft <- function(input, out, mode = 1L) {
   
   # Check if convertf is intalled on system path
-  program_on_path("convertf")
+  # program_on_path("convertf")
   
   # Fix possible input/output erros
   input <- paste0(dirname(input), "/", basename(input))

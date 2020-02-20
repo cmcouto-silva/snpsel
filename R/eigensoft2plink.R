@@ -13,7 +13,7 @@
 eigensoft2plink <- function(input, out, mode = 1L, ...) {
   
   # Check if convertf is intalled on system path
-  program_on_path("convertf")
+  # program_on_path("convertf")
   
   # Check if Plink Software is on system path for mode = 2
   if(mode == 2) program_on_path("plink")
