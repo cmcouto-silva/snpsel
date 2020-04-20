@@ -1,3 +1,6 @@
+# #' @importFrom igraph graph_from_data_frame
+# #' @export
+ 
 gml2igraph <- function(gml, bim, out) {
   if(missing(out)) {
     out <- gt::rm.extension(gml)
