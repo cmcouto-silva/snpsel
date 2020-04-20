@@ -26,11 +26,11 @@ annovar <- function(bim, out, build = "hg19", ref_annovar = "~/cmcouto.silva@usp
   bim_file <- bim
   
   # Read bim file
-  bim <- gt::read.bim(bim_file)
+  bim <- read.bim(bim_file)
   
   # Check output
   if(missing(out)) {
-    out <- gt::rm.extension(bim_file)
+    out <- rm.extension(bim_file)
   }
   
   # Add .avinput extension to output
@@ -43,7 +43,7 @@ annovar <- function(bim, out, build = "hg19", ref_annovar = "~/cmcouto.silva@usp
   data.table::fwrite(avinput, avinput_file, sep = " ", col.names = F)
   
   # Check if ANNOVAR is installed on path
-  gt::program_on_path("annotate_variation.pl")
+  program_on_path("annotate_variation.pl")
   
   # Running ANNOVAR
   system(paste(

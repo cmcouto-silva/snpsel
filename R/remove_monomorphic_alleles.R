@@ -32,7 +32,7 @@
     }
 
     bim_file <- file
-    bim <- gt::read.bim(bim_file)
+    bim <- read.bim(bim_file)
 
     if (nrow(bim[A1 == 0 | A2 == 0 | A1 == A2]) > 1L) {
       snps <- bim[A1 == 0 | A2 == 0, SNP]

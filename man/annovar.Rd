@@ -8,7 +8,8 @@ annovar(
   bim,
   out,
   build = "hg19",
-  ref_annovar = "~/cmcouto.silva@usp.br/lab_files/datasets/Reference_annotation/annovar"
+ 
+    ref_annovar = "~/cmcouto.silva@usp.br/lab_files/datasets/Reference_annotation/annovar"
 )
 }
 \arguments{

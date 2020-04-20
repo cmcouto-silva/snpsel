@@ -52,7 +52,7 @@ shapeit_set_ancestor <- function(shapeit,
   haps <- haps[!AA %in% c("N", "-", ".")]
   
   # Flipping ancestral alleles with dataset mismatch 
-  haps[A1 != AA & A2 != AA, AA := gt::flip_strand(AA)]
+  haps[A1 != AA & A2 != AA, AA := flip_strand(AA)]
   
   # Excluding variants without match in dataset (even after flipping)
   haps <- haps[!(A1 != AA & A2 != AA)]

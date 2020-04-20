@@ -15,7 +15,7 @@ get_pca_outliers <- function(plt, cols = c("IID", "Population"), PCx = 2, PCy = 
   outliers_lst <- lapply(populations, function(pop) {
     plt <- plt$data[Population == pop]
     out <- intersect (
-      gt::outlier(plt, col_name = paste0("PC", PCx), extreme)[, IID],
+      outlier(plt, col_name = paste0("PC", PCx), extreme)[, IID],
       outlier(plt, col_name = paste0("PC", PCy), extreme)[, IID])
     plt <- plt[IID %in% out, .SD, .SDcols = cols]
     return(plt)
