@@ -1,6 +1,6 @@
-Package: gt
+Package: gentools
 Title: Facilities for essential tasks in R
-Version: 0.0.0.9001
+Version: 0.0.0.9002
 Authors@R: person("Cainã Max", "Couto-Silva", email = "cmcouto.silva@gmail.com", role = c("aut", "cre"))
 Description: Simple compilation of functions aiming to make life easier.
 Depends: R (>= 3.4)
