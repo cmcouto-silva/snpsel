@@ -15,31 +15,32 @@
 #' @author Cainã Max Couto-Silva
 #' @export
 
-update_dist_genes <- function(genes, thres = 10000, rm_gene_info = TRUE) {
+update_dist_genes <- function (genes, thres = 10000, rm_gene_info = TRUE) {
   
   idx <- grepl("dist=", genes)
-  
-  isolated_dist <- regmatches(genes[idx], gregexpr("\\(.*?\\)", text = genes[idx])) %>%
-    lapply(gsub, pattern = "\\(|\\)|dist=", replacement = "") %>%
-    lapply(function(x) gsub("NONE", NA, x)) %>%
+  isolated_dist <- regmatches(genes[idx], gregexpr("\\(.*?\\)", text = genes[idx])) %>% 
+    lapply(gsub, pattern = "\\(|\\)|dist=", replacement = "") %>% 
+    lapply(function(x) gsub("NONE", NA, x)) %>% 
     lapply(as.integer)
   
-  isolated_genes <- gsub("\\s*\\([^\\)]+\\)","", genes[idx]) %>%
-    strsplit(",")
+  isolated_genes <- gsub("\\s*\\([^\\)]+\\)", "", genes[idx]) %>% 
+    strsplit(",|;")
   
   idx_thres <- lapply(isolated_dist, function(x) x <= thres)
+  idx_mismatch <- which(sapply(isolated_dist, length) != sapply(isolated_genes, length))
+  
+  for(i in idx_mismatch) {
+    idx_thres[[i]] <- ifelse(any(isolated_dist[[i]] >= thres), FALSE, TRUE)
+  }
   
   genes_final <- mapply(function(g, t) {
     paste0(g[t[!is.na(t)]], collapse = ",")
   }, g = isolated_genes, t = idx_thres)
   
   genes[idx] <- genes_final
-  
-  if(rm_gene_info) {
+  if (rm_gene_info) {
     idx <- grepl("\\(", genes)
-    genes[idx] <- gsub("\\s*\\([^\\)]+\\)","", genes[idx])
+    genes[idx] <- gsub("\\s*\\([^\\)]+\\)", "", genes[idx])
   }
-  
   return(genes)
-  
 }
