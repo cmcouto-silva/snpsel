@@ -4,6 +4,11 @@ Version: 0.0.0.9003
 Authors@R: person("Cainã Max", "Couto-Silva", email = "cmcouto.silva@gmail.com", role = c("aut", "cre"))
 Description: Simple compilation of functions aiming to make my own life easier.
 Depends: R (>= 3.4)
+Imports:
+	data.table
+	magrittr
+	ggplot2
+	ggrepel
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
