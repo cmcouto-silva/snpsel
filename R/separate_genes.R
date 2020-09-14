@@ -14,20 +14,29 @@
 
 separate_genes <- function(data, GENE = "GENE", FUNCTION = "FUNCTION", setdt = TRUE) {
   
-  unify_duplicates <- function(genes) {
-    sapply(strsplit(genes, split = ",|;"), function(g) {
-      ifelse(length(unique(g)) == 1, g[1], paste(g, collapse = ","))
-    })
+  # unify_duplicates <- function(genes) {
+  #   sapply(strsplit(genes, split = ",|;"), function(g) {
+  #     ifelse(length(unique(g)) == 1, g[1], paste(g, collapse = ","))
+  #   })
+  # }
+  # 
+  # dt <- as.data.table(data)
+  # dt[grepl(",|;", GENE), GENE := unify_duplicates(GENE)]
+  # 
+  # if(!is.null(FUNCTION)) dt[grepl(";", FUNCTION), FUNCTION := gsub(";", ",", FUNCTION)]
+  # 
+  # df <- tidyr::separate_rows(dt, "GENE", sep = ",|;")
+  # if(setdt) df <- as.data.table(df)
+  # return(df)
+  # 
+  
+  if(is.null(FUNCTION)) {
+    dt_exploded <- tidyr::separate_rows(data, GENE, sep=",")
+  } else {
+    dt_exploded <- tidyr::separate_rows(data, GENE, FUNCTION, sep=",")
   }
-  
-  dt <- as.data.table(data)
-  dt[grepl(",|;", GENE), GENE := unify_duplicates(GENE)]
-  
-  if(!is.null(FUNCTION)) dt[grepl(";", FUNCTION), FUNCTION := gsub(";", ",", FUNCTION)]
-  
-  df <- tidyr::separate_rows(dt, "GENE", sep = ",|;")
-  if(setdt) df <- as.data.table(df)
-  return(df)
-  
+  if(setdt) {
+    dt_exploded <- as.data.table(dt_exploded)   
+  }
+  return(dt_exploded)
 }
-
