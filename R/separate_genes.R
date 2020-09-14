@@ -12,7 +12,7 @@
 #' @import data.table magrittr
 #' @export
 
-separate_genes <- function(data, GENE = "GENE", FUNCTION = "FUNCTION", setdt = TRUE) {
+separate_genes <- function(data, GENE = "GENE", FUNCTION = "FUNCTION", keep_empty = FALSE, setdt = TRUE) {
   
   # unify_duplicates <- function(genes) {
   #   sapply(strsplit(genes, split = ",|;"), function(g) {
@@ -35,8 +35,7 @@ separate_genes <- function(data, GENE = "GENE", FUNCTION = "FUNCTION", setdt = T
   } else {
     dt_exploded <- tidyr::separate_rows(data, GENE, FUNCTION, sep=",")
   }
-  if(setdt) {
-    dt_exploded <- as.data.table(dt_exploded)   
-  }
+  if(isFALSE(keep_empty)) dt_exploded <- dt_exploded[dt_exploded[[GENE]]!="", ]
+  if(setdt) dt_exploded <- as.data.table(dt_exploded)
   return(dt_exploded)
 }
