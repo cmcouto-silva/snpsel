@@ -7,7 +7,7 @@
 get_snp_genes(
   snp,
   ref = "~/cmcouto.silva@usp.br/lab_files/all_datasets/Reference_annotation",
-  include_function = F
+  include = NULL
 )
 }
 \arguments{
