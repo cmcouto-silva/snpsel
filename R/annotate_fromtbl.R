@@ -37,7 +37,7 @@ annotate_fromtbl <- function (snp, ref, thres = 10000, include_function = T) {
     }
   }), by = SNP, .SDcols = c("GENE", "FUNCTION")]
   
-  if(all(dt[, SNP] == snp)) {
+  if(!all(dt[, SNP] == snp)) {
     stop("SNPs didn't keep the order. Please check the original function.")
   }
   
