@@ -7,8 +7,9 @@ subset_vcf <- function(vcf, ids, out) {
   writeLines(ids, tmp)
   # Run Plink to remove them
   plink2 (
-    `--vcf` = vcf, `--keep` = tmp,
-    `--export` = paste0("vcf bgz id-delim=", id.delim),
+    `--vcf` = vcf,
+    `--keep` = tmp,
+    `--export` = "vcf bgz",
     `--out` = out
     )
   # Remove temporary file
