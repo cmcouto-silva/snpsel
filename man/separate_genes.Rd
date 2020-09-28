@@ -4,7 +4,13 @@
 \alias{separate_genes}
 \title{Explode table based on genes}
 \usage{
-separate_genes(data, GENE = "GENE", FUNCTION = "FUNCTION", setdt = TRUE)
+separate_genes(
+  data,
+  GENE = "GENE",
+  FUNCTION = "FUNCTION",
+  keep_empty = FALSE,
+  setdt = TRUE
+)
 }
 \arguments{
 \item{data}{A data.frame of data.table with the a column (default="GENE") submitted to update_dist_genes() function.}
