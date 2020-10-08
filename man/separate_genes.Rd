@@ -4,23 +4,14 @@
 \alias{separate_genes}
 \title{Explode table based on genes}
 \usage{
-separate_genes(
-  data,
-  GENE = "GENE",
-  FUNCTION = "FUNCTION",
-  keep_empty = FALSE,
-  setdt = TRUE
-)
+separate_genes(data, gene_col = "GENE", keep_empty = FALSE, setdt = TRUE)
 }
 \arguments{
 \item{data}{A data.frame of data.table with the a column (default="GENE") submitted to update_dist_genes() function.}
 
-\item{GENE}{Character. Target-column name (still not well implemented)}
-
-\item{FUNCTION}{Character. Target=column to FUNCTION column to replace ";" by ",". Set it to NULL to disable
-this function.}
-
 \item{setdt}{Logical. If TRUE (default), returns an object from the class "data.table".}
+
+\item{GENE}{Character vector. Target-column(s) name(s).}
 }
 \value{
 Exploded table with unique genes by row (observation) and duplicated values on the other columns.
