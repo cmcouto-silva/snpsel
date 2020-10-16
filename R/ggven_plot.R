@@ -38,7 +38,7 @@ ggven_plot <- function(data, n_cat = 3, internal_label = "label", external_label
       ggforce::geom_circle(alpha = alpha, size = size, color = color, show.legend = FALSE) +
       scale_fill_manual(values = fill)
     
-    annot_df <- ggVennDiagram::ggVennDiagram(l)$layers[[3]]$data
+    annot_df <- ggVennDiagram::ggVennDiagram(data)$layers[[3]]$data
     annot_df$x <- c(A=-1.5, AB=0, B=1.5)
     annot_df$y <- c(A=1, AB=1, B=1)
     
