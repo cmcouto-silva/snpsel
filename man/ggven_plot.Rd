@@ -6,18 +6,21 @@
 \usage{
 ggven_plot(
   data,
+  n_cat = 3,
   internal_label = "label",
   external_label = names(data),
   internal_annot_size = 5,
   external_annot_size = 5,
   color = "black",
-  fill = c("#699BFC", "#22BB44", "#F5736E"),
+  fill = NULL,
   size = 1,
   alpha = 0.25
 )
 }
 \arguments{
 \item{data}{List. A list with values as input.}
+
+\item{n_cat}{Integer. Indicates the number of categories (i.e. circles) to be drawn.}
 
 \item{internal_label}{Character scalar. Either "count", "percent" of "label" (both) for internal labels. 
 Default set to "label" (i.e. both).}
