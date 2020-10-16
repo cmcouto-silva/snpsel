@@ -11,6 +11,7 @@ ggven_plot(
   external_label = names(data),
   internal_annot_size = 5,
   external_annot_size = 5,
+  external_annot_fontface = "bold",
   color = "black",
   fill = NULL,
   size = 1,
@@ -30,6 +31,8 @@ Default set to "label" (i.e. both).}
 \item{internal_annot_size}{Integer. Size for the internal labels.}
 
 \item{external_annot_size}{Integer. Size for the external labels (main group names).}
+
+\item{external_annot_fontface}{Character. Desired font face (default set to "bold"). Leave an empty string for none.}
 
 \item{color}{Character scalar. Contour color.}
 

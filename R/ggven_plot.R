@@ -6,6 +6,7 @@
 #' @param external_label Character vector. Main group names (default set to names of the list).
 #' @param internal_annot_size Integer. Size for the internal labels.
 #' @param external_annot_size Integer. Size for the external labels (main group names).
+#' @param external_annot_fontface Character. Desired font face (default set to "bold"). Leave an empty string for none.
 #' @param color Character scalar. Contour color.
 #' @param fill Character vector. Circle colors.
 #' @param size Integer. Contour line size.
@@ -16,7 +17,7 @@
 #' @export
 
 ggven_plot <- function(data, n_cat = 3, internal_label = "label", external_label = names(data),
-                       internal_annot_size = 5, external_annot_size = 5,
+                       internal_annot_size = 5, external_annot_size = 5, external_annot_fontface = "bold",
                        color = "black", fill = NULL,
                        size = 1, alpha = 0.25) {
   
@@ -45,14 +46,24 @@ ggven_plot <- function(data, n_cat = 3, internal_label = "label", external_label
     method_df <- data.frame (
       label = external_label,
       x = c(-1, 1),
-      y = c(2.7, 2.7)
+      y = c(2.8, 2.8)
     )
     
-    p <- p + 
-      annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
-      annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size, fontface = "bold") +
-      coord_fixed() +
-      theme_void()
+    if(external_annot_fontface != "") {
+      p <- p + 
+        annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
+        annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size, fontface = external_annot_fontface) +
+        coord_fixed() +
+        theme_void()
+    } else {
+      p <- p + 
+        annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
+        annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size) +
+        coord_fixed() +
+        theme_void()
+    }
+    
+
     
   } else {
     
@@ -78,13 +89,20 @@ ggven_plot <- function(data, n_cat = 3, internal_label = "label", external_label
       y = c(4.2, -0.7, -0.7)
     )
     
-    p + 
-      annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
-      annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size, fontface = "bold") +
-      coord_fixed() +
-      theme_void()
+    if(external_annot_fontface != "") {
+      p <- p + 
+        annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
+        annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size, fontface = external_annot_fontface) +
+        coord_fixed() +
+        theme_void()
+    } else {
+      p <- p + 
+        annotate(geom = "text", x = annot_df$x, y = annot_df$y, label = annot_df[[internal_label]], size = internal_annot_size) +
+        annotate(geom = "text", x = method_df$x, y = method_df$y, label = method_df$label, size = external_annot_size) +
+        coord_fixed() +
+        theme_void()
+    }
   }
-  
   return(p)
-
 }
+
