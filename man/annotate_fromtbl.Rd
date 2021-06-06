@@ -20,12 +20,6 @@ Given a reference tidy table with the columns "SNP", "GENE", "DIST", and "FUNCTI
 this function merges it with the dataset by SNP (so each SNP must be unique), and then concatenate
 the genes and their respective function by comma to set unique records.
 }
-\examples{
-\dontrun{
-annotate_fromtbl(genes)
-dt[, c("GENE", "FUNCTION") := annotate_fromtbl(SNP)]
-}
-}
 \author{
 Cainã Max Couto-Silva
 }
