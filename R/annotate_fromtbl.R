@@ -8,7 +8,7 @@
 #' @examples
 #' \dontrun{
 #' annotate_fromtbl(genes)
-#' dt[, c("GENE", "FUNCTION) := annotate_fromtbl(SNP)]
+#' dt[, c("GENE", "FUNCTION") := annotate_fromtbl(SNP)]
 #' }
 #' @import data.table
 #' @return vector of genes or list with two vectors (genes and functions)
