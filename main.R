@@ -1,4 +1,4 @@
-setwd("~/cmcouto.silva@usp.br/R/packages/snpsel")
+setwd("~/Insync/cmcouto.silva@usp.br/R/packages/snpsel")
 devtools::document()
 devtools::load_all()
 
